@@ -4,6 +4,8 @@
 module.exports = {
   siteMetadata: {
     title: `time-tracking-dashboard`,
+    description: `Project built from Frontend Mentor designs`,
+    image: ``,
     siteUrl: `https://www.yourdomain.tld`
   },
   plugins: ["gatsby-plugin-styled-components", "gatsby-plugin-image", "gatsby-plugin-react-helmet", "gatsby-transformer-remark", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
