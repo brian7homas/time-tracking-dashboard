@@ -1,6 +1,7 @@
 import * as React from "react"
 import Layout from "../components/layout"
 import styled from 'styled-components'
+import { SEO } from "../components/SEO"
 //Styles
 import {Container, CardsContainer} from '../styles/containers'
 import {MainCard, MainContent, MainMenuContainer, MainImage, MainMenuList, MainCopy, MainMenuListItem} from '../styles/main-card'

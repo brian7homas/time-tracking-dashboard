@@ -22,6 +22,8 @@ const GlobalStyle = createGlobalStyle`
   }
   body{
     background-color: var(--color-neutral-dark-blue1);
+    color: white;
+    font-family: "Rubik";
   }
 `
 
