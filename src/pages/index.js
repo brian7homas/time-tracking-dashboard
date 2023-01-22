@@ -1,13 +1,37 @@
 import * as React from "react"
 import Layout from "../components/layout"
-import styled from 'styled-components'
-import { SEO } from "../components/SEO"
+import { useStaticQuery, graphql } from "gatsby"
+import Card from "../components/card"
 //Styles
 import {Container, CardsContainer} from '../styles/containers'
-import {MainCard, MainContent, MainMenuContainer, MainImage, MainMenuList, MainCopy, MainMenuListItem} from '../styles/main-card'
-import {CardHeader} from '../styles/card'
+import {MainCard, MainContent, MainMenuContainer, MainImage, MainMenuList, MainCopy, MainMenuListItem, MainCardHeader} from '../styles/main-card'
 
 const IndexPage = () => {
+  const data  = useStaticQuery(
+    graphql`
+    query Data{
+      allDataJson {
+        nodes {
+          title
+          timeframes {
+            weekly {
+              current
+              previous
+            }
+            monthly {
+              current
+              previous
+            }
+            daily {
+              previous
+              current
+            }
+          }
+        }
+      }
+    }
+    `
+  )
   return (
     <>
       <Layout/>
@@ -27,12 +51,16 @@ const IndexPage = () => {
               </MainMenuList>
             </MainMenuContainer>
           </MainCard>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
-          <div>6</div>
-          <div>7</div>
+          {
+            data.allDataJson.nodes.map(data => {
+              return(
+                <Card 
+                  key={data.title}
+                  data={data}
+                />
+              )
+            })
+          }
         </CardsContainer>
       </Container>
     </>

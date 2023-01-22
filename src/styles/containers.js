@@ -9,7 +9,9 @@ const Container = styled.main`
 const CardsContainer = styled.div`
   // border: solid 2px green;
   display:grid;
-  max-width: 800px;
+  grid-gap:2em;
+  justify-content: center;
+  max-width: 1080px;
   // place-items: center center;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
