@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
 //Components
@@ -11,6 +12,7 @@ import {MainCard, MainContent, MainMenuContainer, MainImage, MainMenuList, MainC
 import UserImage from '../images/image-jeremy.png'
 
 const IndexPage = () => {
+  const [interval, setInterval] = useState('Daily')
   const data  = useStaticQuery(
     graphql`
     query Data{
@@ -49,9 +51,9 @@ const IndexPage = () => {
             </MainContent>
             <MainMenuContainer>
               <MainMenuList>
-                <MainMenuListItem>Daily</MainMenuListItem>
-                <MainMenuListItem>Weekly</MainMenuListItem>
-                <MainMenuListItem>Monthly</MainMenuListItem>
+                <MainMenuListItem onClick={() => setInterval('Daily')}>Daily</MainMenuListItem>
+                <MainMenuListItem onClick={() => setInterval('Weekly')}>Weekly</MainMenuListItem>
+                <MainMenuListItem onClick={() => setInterval('Monthly')}>Monthly</MainMenuListItem>
               </MainMenuList>
             </MainMenuContainer>
           </MainCard>
@@ -61,6 +63,7 @@ const IndexPage = () => {
                 <Card 
                   key={data.title}
                   data={data}
+                  state={interval}
                 />
               )
             })

@@ -8,33 +8,44 @@ import ExerciseIcon from '../images/icon-exercise.svg'
 import SocialIcon from '../images/icon-social.svg'
 import SelfIcon from '../images/icon-self-care.svg'
 
-const Card = ({data}) => {
-  let image, bg
+const Card = ({data, state}) => {
+  let image, bg, displayCurrent, displayPrevious, timeframe
+  const DisplayData = () =>{
+    if(state === 'Daily') {displayCurrent = data.timeframes.daily.current;displayPrevious = data.timeframes.daily.previous; timeframe = 'Yesterday'}
+    if(state === 'Weekly') {displayCurrent = data.timeframes.weekly.current;displayPrevious = data.timeframes.weekly.previous; timeframe = 'Last Week'}
+    if(state === 'Monthly') {displayCurrent = data.timeframes.monthly.current;displayPrevious = data.timeframes.monthly.previous; timeframe = 'Last Month'}
+  }
   const CardDesign = () =>{
     // console.log(data.timeframes.weekly)
     if(data.title === 'Work'){
       image = WorkIcon
       bg = 'work'
+      DisplayData()
     }
     else if(data.title === 'Play'){
       image = PlayIcon
       bg = 'play'
+      DisplayData()
     }
     else if(data.title === 'Study'){
       image = StudyIcon
       bg = 'study'
+      DisplayData()
     }
     else if(data.title === 'Exercise'){
       image = ExerciseIcon
       bg = 'exercise'
+      DisplayData()
     }
     else if(data.title === 'Social'){
       image = SocialIcon
       bg = 'social'
+      DisplayData()
     }
     else if(data.title === 'Self Care'){
       image = SelfIcon
       bg = 'self'
+      DisplayData()
     }
   }
   CardDesign()
@@ -59,8 +70,8 @@ const Card = ({data}) => {
               </CardMenuDotContainer>
             </CardHeader>
             <CardBody>
-              <CardDataMain>{data.timeframes.weekly.current}Hrs</CardDataMain>
-              <CardDataSecondary>Last Week - {data.timeframes.weekly.previous}Hrs</CardDataSecondary>
+              <CardDataMain>{displayCurrent}Hrs</CardDataMain>
+              <CardDataSecondary>{timeframe} - {displayPrevious}Hrs</CardDataSecondary>
             </CardBody>
           </CardContentContainer>
         </CardForeground>
