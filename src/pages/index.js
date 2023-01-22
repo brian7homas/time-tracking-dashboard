@@ -1,10 +1,14 @@
 import * as React from "react"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
+//Components
+import { Seo } from "../components/Seo"
 import Card from "../components/card"
 //Styles
 import {Container, CardsContainer} from '../styles/containers'
 import {MainCard, MainContent, MainMenuContainer, MainImage, MainMenuList, MainCopy, MainMenuListItem, MainCardHeader} from '../styles/main-card'
+//Img
+import UserImage from '../images/image-jeremy.png'
 
 const IndexPage = () => {
   const data  = useStaticQuery(
@@ -39,9 +43,9 @@ const IndexPage = () => {
         <CardsContainer>
           <MainCard>
             <MainContent>
-              <MainImage src="https://via.placeholder.com/50" alt="" />
+              <MainImage src={UserImage} alt="" />
               <MainCopy>Report for</MainCopy>
-              <CardHeader>Jeremy Robertson</CardHeader>
+              <MainCardHeader>Jeremy Robertson</MainCardHeader>
             </MainContent>
             <MainMenuContainer>
               <MainMenuList>
@@ -69,4 +73,4 @@ const IndexPage = () => {
 
 export default IndexPage
 
-export const Head = () => <SEO title='Time Tracking Dashboard'></SEO>
+export const Head = () => <Seo title='Time Tracking Dashboard'></Seo>

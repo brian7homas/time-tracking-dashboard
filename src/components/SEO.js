@@ -2,7 +2,7 @@ import React from "react"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 import { Helmet } from "react-helmet"
 
-export const SEO = ({ lang, title, description, pathname, children }) => {
+export const Seo = ({ lang, title, description, pathname, children }) => {
   const { title: defaultTitle, description: defaultDescription, image, siteUrl } = useSiteMetadata()
 
   const seo = {

@@ -17,6 +17,7 @@ const MainImage = styled.img`
   border-radius: 50% 50%;
   border: white 3px solid;
   margin-bottom: 2em;
+  max-width: 4em;
 `
 const MainMenuList = styled.ul`
   list-style:none;
@@ -32,4 +33,8 @@ const MainCopy = styled.p`
   font-weight: 300;
   margin:1.5rem 0 1rem 0;
 `
-export {MainCard, MainContent, MainMenuContainer, MainImage, MainMenuList, MainCopy, MainMenuListItem}
+const MainCardHeader = styled.h1`
+  font-size: 1.8rem;
+  font-weight: 300;
+`
+export {MainCard, MainContent, MainMenuContainer, MainImage, MainMenuList, MainCopy, MainMenuListItem, MainCardHeader}
