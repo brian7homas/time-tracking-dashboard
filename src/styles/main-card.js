@@ -21,11 +21,15 @@ const MainImage = styled.img`
 `
 const MainMenuList = styled.ul`
   list-style:none;
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
 `
 const MainMenuListItem = styled.li`
   font-size: 1rem;
   font-weight: 300;
   margin: 1rem 0;
+  cursor: pointer;
 `
 const MainCopy = styled.p`
   color: var(--color-neutral-pale-blue);

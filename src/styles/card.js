@@ -40,7 +40,7 @@ const CardBody = styled.div`
   margin-top: 2.2em;
 `
 const CardDataMain = styled.h1`
-  font-size: 3.4rem;
+  font-size:clamp(1rem, 4.5vw, 3.4rem);
   font-weight: 300;
 `
 const CardDataSecondary = styled.p`
