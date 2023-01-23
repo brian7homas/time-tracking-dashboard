@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
 //Components
@@ -51,9 +51,9 @@ const IndexPage = () => {
             </MainContent>
             <MainMenuContainer>
               <MainMenuList>
-                <MainMenuListItem onClick={() => setInterval('Daily')}>Daily</MainMenuListItem>
-                <MainMenuListItem onClick={() => setInterval('Weekly')}>Weekly</MainMenuListItem>
-                <MainMenuListItem onClick={() => setInterval('Monthly')}>Monthly</MainMenuListItem>
+                <MainMenuListItem onClick={() => setInterval(function() {return 'Daily'})}>Daily</MainMenuListItem>
+                <MainMenuListItem onClick={() => setInterval(function() {return 'Weekly'})}>Weekly</MainMenuListItem>
+                <MainMenuListItem onClick={() => setInterval(function() {return 'Monthly'})}>Monthly</MainMenuListItem>
               </MainMenuList>
             </MainMenuContainer>
           </MainCard>
