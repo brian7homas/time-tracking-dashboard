@@ -1,54 +1,135 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal starter
-</h1>
+# Frontend Mentor - Time tracking dashboard solution
 
-## 🚀 Quick start
+This is a solution to the [Time tracking dashboard challenge on Frontend Mentor](https://www.brianthomas-develops.com/projects/time-tracker-dashboard/).
 
-1.  **Create a Gatsby site.**
+## Table of contents
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
 
-2.  **Start developing.**
+## Overview
 
-    Navigate into your new site’s directory and start it up.
+### The challenge
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+Users should be able to:
 
-3.  **Open the code and start customizing!**
+- View the optimal layout for the site depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Switch between viewing Daily, Weekly, and Monthly stats
 
-    Your site is now running at http://localhost:8000!
+### Screenshot
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+![Time Tracker Dashboard](https://www.dropbox.com/s/gk9sfk5auybin2w/ttd.gif?dl=0)
 
-4.  **Learn more**
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+### Links
 
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL [here](https://www.brianthomas-develops.com/projects/time-tracker-dashboard/)
 
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+## My process
 
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+### Built with
 
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Desktop-first workflow
+- [Gatsby](https://www.gatsbyjs.com/) - React framework
+- [GSAP](https://greensock.com/gsap/) - Animation library
+- [Styled Components](https://styled-components.com/) - For styles
 
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
 
-## 🚀 Quick start (Gatsby Cloud)
+### What I learned
 
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
+Gatsby JS dev engine is awesome to use except when it doesn't update the browser cache after you've made more than a few changes. When this happens I found that if you stop the dev server and run ```gatsby clean``` should take care of any caching issues.
 
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal)
+I over thought the card data animations.
+
+GSAP is easy to use but using it with React will test your state managing skills. I eventually found that the only animations I needed to complete card data fade in/out lives in the useEffect hook on the main index page where interval is the id of the current data set being displayed on the page.
+
+```
+  MainDataDisplay.fromTo(`#${interval}`, .25,{y:'-4.5px', opacity: 0},{y:0,opacity:1})
+```
+
+The exit animation lives in the ```onClick()``` function for each of the menu list items which I was able to shorten by iterating through menu array.
+
+```const menu = ['Daily', 'Weekly', 'Monthly']```
+
+``` 
+  {
+    menu.map((index) => {
+      return(
+        <MainMenuListItem
+          key={index}
+          className='list-item'
+          id={interval !== index ? '' : 'active'}
+          ref={(element) => {
+            secondaryRef.current[index] = element
+          }} 
+          onClick={() =>{
+            if(interval !== index){
+              gsap.to(`#${interval}`, .2,{opacity:0, y:'-4.5', stagger: {each: .025, from: 'end', axis: 'x', ease: 'power3.in'}})
+              .then(() =>{
+                setInterval(function() {return index})
+              })
+            }
+          }}>{index}</MainMenuListItem>
+      )
+    })
+  }
+```
+
+Graphql became helpful when I was able to figure out that it does not source json files by default. I included the ```gatsby-source-filesystem``` but was missing the ```gatsby-transformer-json``` plugin. Once that was included I was able to query Graphql.
+
+```
+const data  = useStaticQuery(
+    graphql`
+    query Data{
+      allDataJson {
+        nodes {
+          title
+          timeframes {
+            weekly {
+              current
+              previous
+            }
+            monthly {
+              current
+              previous
+            }
+            daily {
+              previous
+              current
+            }
+          }
+        }
+      }
+    }
+  ```
+
+
+### Continued development
+
+I love building and designing GSAP animations, in the future I plan to implement it somehow in every project to improve my frontend skills. I'll also be continuing to learn more about managing state in React when building animations.
+
+
+### Useful resources
+
+- [How To Use Refs In React With Hooks](https://blog.webdevsimplified.com/2020-05/use-ref/) - This helped with tracking which elements needed a enter/exit animation 
+- [GSAP Staggers](https://greensock.com/docs/v3/Staggers) - Instead of using a basic fade in/out for the card data. This documentation helped with making the animation a bit more unique.
+
+## Author
+
+- Website - [Brian](https://www.brianthomas-develops.com)
+- Frontend Mentor - [@joyreacher](https://www.frontendmentor.io/profile/joyreacher)
+- LinkedIn - [Brian Thomas](www.linkedin.com/in/brianthomas--develops)
