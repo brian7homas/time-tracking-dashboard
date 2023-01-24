@@ -2,11 +2,12 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
+  pathPrefix: `projects/time-tracker-dashboard/`,
   siteMetadata: {
     title: `time-tracking-dashboard`,
     description: `Project built from Frontend Mentor designs`,
     image: ``,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://www.brianthomas-develops.com/projects/time-tracker-dashboard`
   },
   plugins: ["gatsby-plugin-styled-components", "gatsby-plugin-image", "gatsby-plugin-react-helmet", "gatsby-transformer-remark", "gatsby-plugin-sharp", "gatsby-transformer-sharp","gatsby-transformer-json", {
     resolve: 'gatsby-source-filesystem',
