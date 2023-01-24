@@ -9,7 +9,7 @@ module.exports = {
     image: ``,
     siteUrl: `https://www.brianthomas-develops.com/projects/time-tracker-dashboard`
   },
-  plugins: ["gatsby-plugin-styled-components", "gatsby-plugin-image", "gatsby-plugin-react-helmet", "gatsby-transformer-remark", "gatsby-plugin-sharp", "gatsby-transformer-sharp","gatsby-transformer-json", {
+  plugins: ["gatsby-plugin-styled-components", "gatsby-plugin-image", "gatsby-plugin-react-helmet", "gatsby-transformer-remark", "gatsby-plugin-sharp", "gatsby-transformer-sharp","gatsby-transformer-json","gatsby-plugin-netlify" {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "images",
