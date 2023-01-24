@@ -1,7 +1,8 @@
 import * as React from "react"
-import { useState } from "react"
+import { useState, useEffect, useRef  } from "react"
 import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
+import gsap from 'gsap'
 //Components
 import { Seo } from "../components/Seo"
 import Card from "../components/card"
@@ -10,9 +11,17 @@ import {Container, CardsContainer} from '../styles/containers'
 import {MainCard, MainContent, MainMenuContainer, MainImage, MainMenuList, MainCopy, MainMenuListItem, MainCardHeader} from '../styles/main-card'
 //Img
 import UserImage from '../images/image-jeremy.png'
+//Animation timeline
+const MainDataDisplay = gsap.timeline({defaults:{
+  stagger:{each: .025, ease: 'power3.in'},
+  ease: 'power3.inOut'
+}})
 
 const IndexPage = () => {
   const [interval, setInterval] = useState('Daily')
+  const previousRef = useRef(null)
+  const secondaryRef = useRef([])
+  const menu = ['Daily', 'Weekly', 'Monthly']
   const data  = useStaticQuery(
     graphql`
     query Data{
@@ -38,6 +47,10 @@ const IndexPage = () => {
     }
     `
   )
+  useEffect(() =>{
+    previousRef.current = interval
+    MainDataDisplay.fromTo(`#${interval}`, .25,{y:'-4.5px', opacity: 0},{y:0,opacity:1})
+  }, [interval])
   return (
     <>
       <Layout/>
@@ -51,9 +64,13 @@ const IndexPage = () => {
             </MainContent>
             <MainMenuContainer>
               <MainMenuList>
-                <MainMenuListItem onClick={() => setInterval(function() {return 'Daily'})}>Daily</MainMenuListItem>
-                <MainMenuListItem onClick={() => setInterval(function() {return 'Weekly'})}>Weekly</MainMenuListItem>
-                <MainMenuListItem onClick={() => setInterval(function() {return 'Monthly'})}>Monthly</MainMenuListItem>
+                          if(interval !== index){
+                            gsap.to(`#${interval}`, .2,{opacity:0, y:'-4.5', stagger: {each: .025, from: 'end', axis: 'x', ease: 'power3.in'}})
+                            .then(() =>{
+                              setInterval(function() {return index})
+                            })
+                          }
+                        }}>{index}</MainMenuListItem>
               </MainMenuList>
             </MainMenuContainer>
           </MainCard>
@@ -64,6 +81,7 @@ const IndexPage = () => {
                   key={data.title}
                   data={data}
                   state={interval}
+                  previousRef={previousRef}
                 />
               )
             })

@@ -8,7 +8,7 @@ import ExerciseIcon from '../images/icon-exercise.svg'
 import SocialIcon from '../images/icon-social.svg'
 import SelfIcon from '../images/icon-self-care.svg'
 
-const Card = ({data, state}) => {
+const Card = ({data, state, previousRef}) => {
   let image, bg, displayCurrent, displayPrevious, timeframe
   const DisplayData = () =>{
     if(state === 'Daily') {displayCurrent = data.timeframes.daily.current;displayPrevious = data.timeframes.daily.previous; timeframe = 'Yesterday'}
@@ -16,7 +16,6 @@ const Card = ({data, state}) => {
     if(state === 'Monthly') {displayCurrent = data.timeframes.monthly.current;displayPrevious = data.timeframes.monthly.previous; timeframe = 'Last Month'}
   }
   const CardDesign = () =>{
-    // console.log(data.timeframes.weekly)
     if(data.title === 'Work'){
       image = WorkIcon
       bg = 'work'
@@ -70,8 +69,8 @@ const Card = ({data, state}) => {
               </CardMenuDotContainer>
             </CardHeader>
             <CardBody>
-              <CardDataMain>{displayCurrent}Hrs</CardDataMain>
-              <CardDataSecondary>{timeframe} - {displayPrevious}Hrs</CardDataSecondary>
+              <CardDataMain id={state} ref={previousRef} className="selection-main">{displayCurrent}Hrs</CardDataMain>
+              <CardDataSecondary id={state} ref={previousRef}>{timeframe} - {displayPrevious}Hrs</CardDataSecondary>
             </CardBody>
           </CardContentContainer>
         </CardForeground>

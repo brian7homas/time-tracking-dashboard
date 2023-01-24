@@ -42,10 +42,12 @@ const CardBody = styled.div`
 const CardDataMain = styled.h1`
   font-size:clamp(1rem, 4.5vw, 3.4rem);
   font-weight: 300;
+  opacity:0;
 `
 const CardDataSecondary = styled.p`
   margin: .75em auto;
   font-size: .8rem;
   color: var(--color-neutral-pale-blue);
+  opacity: 0;
 `
 export {CardBackground, CardForeground, CardTitle, CardContentContainer, CardHeader, CardMenuDot, CardMenuDotContainer, CardBody, CardDataMain, CardDataSecondary}
