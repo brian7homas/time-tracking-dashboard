@@ -59,8 +59,10 @@ const IndexPage = () => {
           <MainCard>
             <MainContent>
               <MainImage src={UserImage} alt="user image" />
-              <MainCopy>Report for</MainCopy>
-              <MainCardHeader>Jeremy Robertson</MainCardHeader>
+              <div>
+                <MainCopy>Report for</MainCopy>
+                <MainCardHeader>Jeremy Robertson</MainCardHeader>
+              </div>
             </MainContent>
             <MainMenuContainer>
               <MainMenuList>
@@ -108,4 +110,4 @@ const IndexPage = () => {
 
 export default IndexPage
 
-export const Head = () => <Seo title='Time Tracking Dashboard'></Seo>
+export const Head = () => <Seo lang="en" title='Time Tracking Dashboard'></Seo>
