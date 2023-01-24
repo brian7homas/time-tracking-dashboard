@@ -58,7 +58,7 @@ const Card = ({data, state, previousRef}) => {
             'backgroundColor': `var(--color-primary-${bg})`
           }
         }>
-        <CardForeground>
+        <CardForeground className='card'>
           <CardContentContainer>
             <CardHeader>
               <CardTitle>{data.title}</CardTitle>

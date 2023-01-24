@@ -30,6 +30,10 @@ const MainMenuListItem = styled.li`
   font-weight: 300;
   margin: 1rem 0;
   cursor: pointer;
+  color: var(--color-neutral-pale-blue);
+  :hover{
+    color: white;
+  }
 `
 const MainCopy = styled.p`
   color: var(--color-neutral-pale-blue);
@@ -38,7 +42,7 @@ const MainCopy = styled.p`
   margin:1.5rem 0 1rem 0;
 `
 const MainCardHeader = styled.h1`
-  font-size: 1.8rem;
+  font-size: clamp(1rem, 3.5vw, 3.4rem);
   font-weight: 300;
 `
 export {MainCard, MainContent, MainMenuContainer, MainImage, MainMenuList, MainCopy, MainMenuListItem, MainCardHeader}
