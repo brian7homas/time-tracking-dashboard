@@ -58,12 +58,23 @@ const IndexPage = () => {
         <CardsContainer>
           <MainCard>
             <MainContent>
-              <MainImage src={UserImage} alt="" />
+              <MainImage src={UserImage} alt="user image" />
               <MainCopy>Report for</MainCopy>
               <MainCardHeader>Jeremy Robertson</MainCardHeader>
             </MainContent>
             <MainMenuContainer>
               <MainMenuList>
+                {
+                  menu.map((index) => {
+                    return(
+                      <MainMenuListItem
+                        key={index}
+                        className='list-item'
+                        id={interval !== index ? '' : 'active'}
+                        ref={(element) => {
+                          secondaryRef.current[index] = element
+                        }} 
+                        onClick={() =>{
                           if(interval !== index){
                             gsap.to(`#${interval}`, .2,{opacity:0, y:'-4.5', stagger: {each: .025, from: 'end', axis: 'x', ease: 'power3.in'}})
                             .then(() =>{
@@ -71,6 +82,9 @@ const IndexPage = () => {
                             })
                           }
                         }}>{index}</MainMenuListItem>
+                    )
+                  })
+                }
               </MainMenuList>
             </MainMenuContainer>
           </MainCard>
