@@ -28,7 +28,7 @@ Users should be able to:
 
 ### Screenshot
 
-![Time Tracker Dashboard](https://www.dropbox.com/s/gk9sfk5auybin2w/ttd.gif?dl=0)
+![Time Tracker Dashboard](src/images/ttd.gif)
 
 
 ### Links
