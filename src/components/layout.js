@@ -26,10 +26,6 @@ const GlobalStyle = createGlobalStyle`
     color: white;
     font-family: "Rubik";
   }
-  .list-item{
-    color: var(--color-neutral-pale-blue);
-    transition: color .2s;
-  }
   #active{
     color: white;
     transition: color .2s;

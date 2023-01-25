@@ -16,7 +16,7 @@ const CardForeground = styled.div`
   height: 80%;
   border-radius: 15px 15px 20px 20px;
 `
-const CardTitle = styled.h6`
+const CardTitle = styled.h1`
   font-size: 1rem;
   font-weight: 500;
 `

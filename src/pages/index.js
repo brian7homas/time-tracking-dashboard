@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import { useStaticQuery, graphql } from "gatsby"
 import gsap from 'gsap'
 //Components
-import { Seo } from "../components/Seo"
+import { Seo } from "../components/SEO"
 import Card from "../components/card"
 //Styles
 import {Container, CardsContainer} from '../styles/containers'
@@ -49,7 +49,7 @@ const IndexPage = () => {
   )
   useEffect(() =>{
     previousRef.current = interval
-    MainDataDisplay.fromTo(`#${interval}`, .25,{y:'-4.5px', opacity: 0},{y:0,opacity:1})
+    MainDataDisplay.fromTo(`.${interval}`, .25,{y:'-4.5px', opacity: 0},{y:0,opacity:1})
   }, [interval])
   return (
     <>
@@ -71,14 +71,13 @@ const IndexPage = () => {
                     return(
                       <MainMenuListItem
                         key={index}
-                        className='list-item'
-                        id={interval !== index ? '' : 'active'}
+                        id={interval !== index ? `inactive-${index}` : 'active'}
                         ref={(element) => {
                           secondaryRef.current[index] = element
                         }} 
                         onClick={() =>{
                           if(interval !== index){
-                            gsap.to(`#${interval}`, .2,{opacity:0, y:'-4.5', stagger: {each: .025, from: 'end', axis: 'x', ease: 'power3.in'}})
+                            gsap.to(`.${interval}`, .2,{opacity:0, y:'-4.5', stagger: {each: .025, from: 'end', axis: 'x', ease: 'power3.in'}})
                             .then(() =>{
                               setInterval(function() {return index})
                             })

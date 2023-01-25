@@ -69,8 +69,8 @@ const Card = ({data, state, previousRef}) => {
               </CardMenuDotContainer>
             </CardHeader>
             <CardBody>
-              <CardDataMain id={state} ref={previousRef} className="selection-main">{displayCurrent}Hrs</CardDataMain>
-              <CardDataSecondary id={state} ref={previousRef}>{timeframe} - {displayPrevious}Hrs</CardDataSecondary>
+              <CardDataMain ref={previousRef} className={state}>{displayCurrent}Hrs</CardDataMain>
+              <CardDataSecondary ref={previousRef} className={state}>{timeframe} - {displayPrevious}Hrs</CardDataSecondary>
             </CardBody>
           </CardContentContainer>
         </CardForeground>
