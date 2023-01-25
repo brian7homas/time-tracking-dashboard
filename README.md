@@ -33,7 +33,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Add solution URL here](https://lucent-centaur-a88c6d.netlify.app)
 - Live Site URL [here](https://www.brianthomas-develops.com/projects/time-tracker-dashboard/)
 
 ## My process
@@ -51,14 +51,14 @@ Users should be able to:
 
 ### What I learned
 
-Gatsby JS dev engine is awesome to use except when it doesn't update the browser cache after you've made more than a few changes. When this happens I found that if you stop the dev server and run ```gatsby clean``` should take care of any caching issues.
+Gatsby JS dev engine is easy to use except when it doesn't update the browser cache. If this happens I found that if you stop the dev server and run ```gatsby clean``` should take care of any caching issues.
 
 I over thought the card data animations.
 
 GSAP is easy to use but using it with React will test your state managing skills. I eventually found that the only animations I needed to complete card data fade in/out lives in the useEffect hook on the main index page where interval is the id of the current data set being displayed on the page.
 
 ```
-  MainDataDisplay.fromTo(`#${interval}`, .25,{y:'-4.5px', opacity: 0},{y:0,opacity:1})
+  MainDataDisplay.fromTo(`.${interval}`, .25,{y:'-4.5px', opacity: 0},{y:0,opacity:1})
 ```
 
 The exit animation lives in the ```onClick()``` function for each of the menu list items which I was able to shorten by iterating through menu array.
@@ -71,14 +71,13 @@ The exit animation lives in the ```onClick()``` function for each of the menu li
       return(
         <MainMenuListItem
           key={index}
-          className='list-item'
-          id={interval !== index ? '' : 'active'}
+          id={interval !== index ? `inactive-${index}` : 'active'}
           ref={(element) => {
             secondaryRef.current[index] = element
           }} 
           onClick={() =>{
             if(interval !== index){
-              gsap.to(`#${interval}`, .2,{opacity:0, y:'-4.5', stagger: {each: .025, from: 'end', axis: 'x', ease: 'power3.in'}})
+              gsap.to(`.${interval}`, .2,{opacity:0, y:'-4.5', stagger: {each: .025, from: 'end', axis: 'x', ease: 'power3.in'}})
               .then(() =>{
                 setInterval(function() {return index})
               })
@@ -89,7 +88,7 @@ The exit animation lives in the ```onClick()``` function for each of the menu li
   }
 ```
 
-Graphql became helpful when I was able to figure out that it does not source json files by default. I included the ```gatsby-source-filesystem``` but was missing the ```gatsby-transformer-json``` plugin. Once that was included I was able to query Graphql.
+Graphql became helpful when trying to access the json data. I  figured out that Graphql does not source json files by default. You have to include the ```gatsby-source-filesystem``` and the ```gatsby-transformer-json``` plugin. Once I installed both plugins I was able to query Graphql for json data.
 
 ```
 const data  = useStaticQuery(
